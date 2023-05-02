@@ -1,19 +1,16 @@
-<script setup></script>
+<script setup>
+import SignupForm from '@/components/SignupForm.vue'
+import LoginForm from '@/components/LoginForm.vue'
+</script>
 
 <template>
   <main>
     <v-container>
-      <v-sheet
-        class="d-flex justify-center flex-wrap text-center mx-auto py-6"
-        elevation="4"
-        height="250"
-        rounded
-        max-width="800"
-        width="100%"
-      >
-        <div>
-          <h2 class="text-h4 font-weight-black text-orange">Welcome!</h2>
-        </div>
+      <v-sheet class="d-flex justify-center flex-wrap mx-auto py-6" rounded>
+        <h2 class="mb-6 text-h4">Добро пожаловать!</h2>
+
+        <!-- <SignupForm /> -->
+        <LoginForm />
       </v-sheet>
     </v-container>
   </main>

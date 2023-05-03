@@ -1,15 +1,16 @@
 <script setup>
-import { useField, useForm } from 'vee-validate'
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
+import CustomField from '@/components/CustomField.vue'
 
-const { handleSubmit } = useForm({
-  validationSchema: {
-    email: 'required|email',
-    password: 'required|min:6'
-  }
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required().length(6)
 })
 
-const email = useField('email')
-const password = useField('password')
+const { handleSubmit } = useForm({
+  validationSchema: schema
+})
 
 const onSubmit = handleSubmit((values) => {
   console.log(JSON.stringify(values, null, 2))
@@ -18,28 +19,12 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
   <v-form @submit.prevent="onSubmit" class="w-100">
-    <div class="container">
-      <v-row no-gutters justify="center">
-        <v-col cols="10" md="6">
-          <v-text-field
-            v-model="email.value.value"
-            label="Email"
-            type="email"
-            :error-messages="email.errorMessage.value"
-          ></v-text-field>
-
-          <v-text-field
-            v-model="password.value.value"
-            label="Пароль"
-            type="password"
-            :error-messages="password.errorMessage.value"
-          ></v-text-field>
-
-          <div class="mt-4 text-center">
-            <v-btn type="submit" color="" size="large"> Войти </v-btn>
-          </div>
-        </v-col>
-      </v-row>
-    </div>
+    <v-container>
+      <CustomField label="Email" name="email" type="email" mode="eager" />
+      <CustomField label="Пароль" name="password" type="password" mode="eager" />
+      <div class="mt-4 text-center">
+        <v-btn type="submit" color="" size="large"> Войти </v-btn>
+      </div>
+    </v-container>
   </v-form>
 </template>

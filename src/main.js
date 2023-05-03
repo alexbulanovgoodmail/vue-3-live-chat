@@ -12,30 +12,26 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-import { defineRule, configure } from 'vee-validate'
-import { localize, setLocale } from '@vee-validate/i18n'
-import { required, email, min } from '@vee-validate/rules'
-import ru from '@vee-validate/i18n/dist/locale/ru.json'
-// Define the rule globally
-defineRule('required', required)
-defineRule('email', email)
-defineRule('min', min)
+//
+import { setLocale } from 'yup'
 
-localize({ ru })
-
-configure({
-  generateMessage: localize('ru', {
-    names: {
-      name: 'Имя',
-      email: 'Адрес электронной почты',
-      password: 'Пароль',
-      confirmed_password: 'Подтвержденный пароль',
-      submit: 'Отправить',
-      form_validation_error: 'У формы есть ошибки'
-    }
-  })
+setLocale({
+  // Общие сообщения не требуют значения ({key: "сообщение без параметров"})
+  mixed: {
+    default: 'Поле неверно заполнено',
+    required: 'Обязательное поле'
+  },
+  string: {
+    email: 'Некорректный email',
+    length: ({ length }) => `Длина поля должна быть ${length} символов`
+  },
+  number: {
+    min: ({ min }) => `Значение должно быть больше или равно ${min}`,
+    max: ({ max }) => `Значение должно быть меньше или равно ${max}`
+  }
 })
 
+//
 const vuetify = createVuetify({
   components,
   directives

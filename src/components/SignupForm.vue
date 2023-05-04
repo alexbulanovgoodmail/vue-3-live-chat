@@ -13,12 +13,16 @@ const schema = yup.object({
   password: yup.string().required().length(6)
 })
 
-const { handleSubmit } = useForm({
+const { handleSubmit, setFieldError } = useForm({
   validationSchema: schema
 })
 
 const onSubmit = handleSubmit(async (values) => {
-  await signup(values.email, values.password, values.name)
+  try {
+    await signup(values.email, values.password, values.name)
+  } catch (err) {
+    setFieldError('email', 'Адрес электронной почты уже используется другой учетной записью')
+  }
 })
 </script>
 

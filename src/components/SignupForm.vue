@@ -19,7 +19,6 @@ const { handleSubmit } = useForm({
 
 const onSubmit = handleSubmit(async (values) => {
   await signup(values.email, values.password, values.name)
-  console.log('user signed up')
 })
 </script>
 
@@ -29,6 +28,7 @@ const onSubmit = handleSubmit(async (values) => {
       <CustomField label="Имя" name="name" type="text" mode="eager" />
       <CustomField label="Email" name="email" type="email" mode="eager" />
       <CustomField label="Пароль" name="password" type="password" mode="eager" />
+      <span class="text-caption text-red">{{ error }}</span>
       <div class="mt-4 text-center">
         <v-btn type="submit" color="" size="large"> Регистрация </v-btn>
       </div>

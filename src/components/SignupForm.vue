@@ -3,6 +3,10 @@ import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 import CustomField from '@/components/CustomField.vue'
 
+import useSignup from '@/composables/useSignup'
+
+const { error, signup } = useSignup()
+
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
@@ -13,8 +17,9 @@ const { handleSubmit } = useForm({
   validationSchema: schema
 })
 
-const onSubmit = handleSubmit((values) => {
-  console.log(JSON.stringify(values, null, 2))
+const onSubmit = handleSubmit(async (values) => {
+  await signup(values.email, values.password, values.name)
+  console.log('user signed up')
 })
 </script>
 

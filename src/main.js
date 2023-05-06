@@ -12,8 +12,9 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-
-//
+// auth
+import { projectAuth } from './firebase/config'
+// yup
 import { setLocale } from 'yup'
 
 setLocale({
@@ -38,10 +39,15 @@ const vuetify = createVuetify({
   directives
 })
 
-const app = createApp(App)
+let app = null
 
-app.use(createPinia())
-app.use(router)
-app.use(vuetify)
+projectAuth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App)
 
-app.mount('#app')
+    app.use(createPinia())
+    app.use(router)
+    app.use(vuetify)
+    app.mount('#app')
+  }
+})

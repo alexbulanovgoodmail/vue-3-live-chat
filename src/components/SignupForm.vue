@@ -5,6 +5,8 @@ import CustomField from '@/components/CustomField.vue'
 
 import useSignup from '@/composables/useSignup'
 
+const emit = defineEmits(['signup'])
+
 const { error, signup } = useSignup()
 
 const schema = yup.object({
@@ -20,6 +22,7 @@ const { handleSubmit, setFieldError } = useForm({
 const onSubmit = handleSubmit(async (values) => {
   try {
     await signup(values.email, values.password, values.name)
+    emit('signup')
   } catch (err) {
     setFieldError('email', 'Адрес электронной почты уже используется другой учетной записью')
   }

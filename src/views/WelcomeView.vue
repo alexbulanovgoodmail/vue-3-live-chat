@@ -1,9 +1,15 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import SignupForm from '@/components/SignupForm.vue'
 import LoginForm from '@/components/LoginForm.vue'
 
 const showLogin = ref(true)
+const router = useRouter()
+
+function enterChat(params) {
+  router.push({ name: 'ChatroomView' })
+}
 </script>
 
 <template>
@@ -13,7 +19,7 @@ const showLogin = ref(true)
         <v-sheet class="w-100 d-flex justify-center flex-wrap mx-auto py-6" max-width="480" rounded>
           <template v-if="showLogin">
             <h1 class="my-4 text-h5 text-uppercase">Вход</h1>
-            <LoginForm />
+            <LoginForm @login="enterChat" />
             <div>
               Еще нет аккаунта?
               <span class="font-weight-bold text-decoration-underline" @click="showLogin = false"
@@ -23,7 +29,7 @@ const showLogin = ref(true)
           </template>
           <template v-else>
             <h1 class="my-4 text-h5 text-uppercase">Регистрация</h1>
-            <SignupForm />
+            <SignupForm @signup="enterChat" />
             <div>
               Уже зарегистрировался?
               <span class="font-weight-bold text-decoration-underline" @click="showLogin = true"

@@ -5,6 +5,8 @@ import CustomField from '@/components/CustomField.vue'
 
 import useLogin from '@/composables/useLogin'
 
+const emit = defineEmits(['login'])
+
 const { error, login } = useLogin()
 
 const schema = yup.object({
@@ -19,6 +21,7 @@ const { handleSubmit, setFieldError } = useForm({
 const onSubmit = handleSubmit(async (values) => {
   try {
     await login(values.email, values.password)
+    emit('login')
   } catch (err) {
     setFieldError('email', 'Проверьте правильность')
     setFieldError('password', 'Проверьте правильность')

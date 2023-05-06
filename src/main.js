@@ -3,7 +3,6 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-
 import './assets/scss/main.scss'
 
 // Vuetify
@@ -39,7 +38,7 @@ const vuetify = createVuetify({
   directives
 })
 
-let app = null
+let app
 
 projectAuth.onAuthStateChanged(() => {
   if (!app) {

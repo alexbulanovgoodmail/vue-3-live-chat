@@ -20,6 +20,7 @@ const { handleSubmit, setFieldError } = useForm({
 })
 
 const onSubmit = handleSubmit(async (values) => {
+  console.log('[qwqwq]')
   try {
     await signup(values.email, values.password, values.name)
     emit('signup')

@@ -1,9 +1,12 @@
-<script setup></script>
+<script setup>
+import Navbar from '../components/Navbar.vue'
+</script>
 
 <template>
-  <main class="d-flex flex-column justify-center">
+  <Navbar />
+  <div class="w-100 py-16">
     <v-container>
-      <v-row> chatcroo </v-row>
+      <h1>Chatroom</h1>
     </v-container>
-  </main>
+  </div>
 </template>

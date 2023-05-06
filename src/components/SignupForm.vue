@@ -12,7 +12,7 @@ const { error, signup } = useSignup()
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
-  password: yup.string().required().length(6)
+  password: yup.string().required()
 })
 
 const { handleSubmit, setFieldError } = useForm({
@@ -20,12 +20,13 @@ const { handleSubmit, setFieldError } = useForm({
 })
 
 const onSubmit = handleSubmit(async (values) => {
-  console.log('[qwqwq]')
   try {
     await signup(values.email, values.password, values.name)
     emit('signup')
   } catch (err) {
-    setFieldError('email', 'Адрес электронной почты уже используется другой учетной записью')
+    setFieldError('name', 'Проверьте правильность')
+    setFieldError('email', 'Проверьте правильность')
+    setFieldError('password', 'Проверьте правильность')
   }
 })
 </script>

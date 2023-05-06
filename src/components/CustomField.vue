@@ -50,5 +50,11 @@ const handlers = computed(() => {
 </script>
 
 <template>
-  <v-text-field type="text" v-on="handlers" :value="value" variant="underlined"></v-text-field>
+  <v-text-field
+    type="text"
+    v-on="handlers"
+    :value="value"
+    :error-messages="errorMessage"
+    variant="underlined"
+  ></v-text-field>
 </template>

@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 import CustomField from '@/components/CustomField.vue'
@@ -14,7 +15,9 @@ const schema = yup.object({
   password: yup.string().required()
 })
 
-const { handleSubmit, setFieldError } = useForm({
+const show = ref(true)
+
+const { handleSubmit, setErrors } = useForm({
   validationSchema: schema
 })
 
@@ -23,8 +26,10 @@ const onSubmit = handleSubmit(async (values) => {
     await login(values.email, values.password)
     emit('login')
   } catch (err) {
-    setFieldError('email', 'Проверьте правильность')
-    setFieldError('password', 'Проверьте правильность')
+    setErrors({
+      email: 'Ошибка Firebase',
+      password: 'Ошибка Firebase'
+    })
   }
 })
 </script>
@@ -33,7 +38,14 @@ const onSubmit = handleSubmit(async (values) => {
   <v-form @submit.prevent="onSubmit" class="w-100">
     <v-container>
       <CustomField label="Email" name="email" type="email" mode="eager" />
-      <CustomField label="Пароль" name="password" type="password" mode="eager" />
+      <CustomField
+        :append-icon="!show ? 'mdi-eye' : 'mdi-eye-off'"
+        label="Пароль"
+        name="password"
+        :type="!show ? 'text' : 'password'"
+        mode="eager"
+        @click:append="show = !show"
+      />
       <span class="text-caption text-red">{{ error }}</span>
       <div class="mt-4 text-center">
         <v-btn type="submit" color="" size="large"> Войти </v-btn>

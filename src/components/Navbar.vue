@@ -18,12 +18,12 @@ async function handleLogout(params) {
   <v-app-bar v-if="user">
     <v-toolbar-title>
       <p class="text-body-1">
-        Hey, <span class="font-weight-bold">{{ user.displayName }}</span>
+        Привет, <span class="font-weight-bold">{{ user.displayName }}</span>
       </p>
       <p class="text-body-2">
-        Currently logged is as <span class="font-weight-bold">{{ user.email }}</span>
+        В настоящее время зарегистрирован как <span class="font-weight-bold">{{ user.email }}</span>
       </p>
     </v-toolbar-title>
-    <v-btn prepend-icon="mdi-logout" @click="handleLogout">Logout</v-btn>
+    <v-btn prepend-icon="mdi-logout" @click="handleLogout">Выйти</v-btn>
   </v-app-bar>
 </template>

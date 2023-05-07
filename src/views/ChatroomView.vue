@@ -18,8 +18,10 @@ watch(user, () => {
 <template>
   <Navbar />
   <div class="w-100 py-16">
-    <v-container>
-      <NewChatForm />
+    <v-container class="h-100 py-0">
+      <div class="d-flex flex-column justify-end h-100">
+        <NewChatForm />
+      </div>
     </v-container>
   </div>
 </template>

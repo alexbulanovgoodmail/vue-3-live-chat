@@ -17,13 +17,18 @@ watch(user, () => {
 </script>
 
 <template>
-  <Navbar />
-  <div class="w-100 pt-16 pb-0">
-    <v-container class="h-100 py-0">
-      <div class="d-flex flex-column justify-end h-100">
-        <ChatWindow />
-        <NewChatForm />
-      </div>
-    </v-container>
-  </div>
+  <!-- <Navbar /> -->
+  <v-container class="panel pt-16">
+    <ChatWindow />
+    <NewChatForm />
+  </v-container>
 </template>
+
+<style lang="scss">
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+</style>

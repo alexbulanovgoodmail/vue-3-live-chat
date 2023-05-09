@@ -38,8 +38,9 @@ async function handleSubmit(params) {
       auto-grow
       variant="outlined"
       placeholder="Введите сообщение и нажмите ENTER для отправки"
-      append-inner-icon="mdi-subdirectory-arrow-left"
+      :append-inner-icon="isLoading ? 'mdi-loading' : 'mdi-subdirectory-arrow-left'"
       :disabled="isLoading"
+      :loading="isLoading"
       @click:append-inner="handleSubmit"
       @keypress.enter.prevent="handleSubmit"
     ></v-textarea>
@@ -51,7 +52,37 @@ async function handleSubmit(params) {
 .new-chat-form {
   textarea::placeholder {
     font-size: 12px;
-    line-height: 1;
+
+    @media screen and (min-width: 440px) {
+      padding-top: 4px;
+    }
+
+    @media screen and (min-width: 640px) {
+      padding-top: 0;
+      font-size: initial;
+    }
+  }
+
+  .v-field__append-inner {
+    margin: auto 0;
+    padding: 0;
+  }
+
+  .mdi-loading {
+    animation-name: spinner;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

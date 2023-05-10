@@ -13,7 +13,6 @@ const getCollection = (myCollection) => {
   const unsub = onSnapshot(
     orderedQuery,
     (docsSnap) => {
-      console.log('snap')
       const results = []
       docsSnap.forEach((doc) => {
         doc.data().createAt &&

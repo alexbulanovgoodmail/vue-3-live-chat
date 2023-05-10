@@ -13,6 +13,15 @@ const requireAuth = (to, from, next) => {
     next({ name: 'WelcomeView' })
   }
 }
+const requireNoAuth = (to, from, next) => {
+  const user = projectAuth.currentUser
+
+  if (user) {
+    next({ name: 'ChatroomView' })
+  } else {
+    next()
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +29,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'WelcomeView',
-      component: WelcomeView
+      component: WelcomeView,
+      beforeEnter: requireNoAuth
     },
     {
       path: '/chatroom',

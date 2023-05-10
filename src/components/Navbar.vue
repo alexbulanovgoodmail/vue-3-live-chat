@@ -7,9 +7,7 @@ const { user } = getUser()
 
 async function handleLogout(params) {
   await logout()
-
   if (!error.value) {
-    console.log('user logout')
   }
 }
 </script>

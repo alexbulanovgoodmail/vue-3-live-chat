@@ -17,7 +17,7 @@ watch(user, () => {
 </script>
 
 <template>
-  <!-- <Navbar /> -->
+  <Navbar />
   <v-container class="panel pt-16">
     <ChatWindow />
     <NewChatForm />

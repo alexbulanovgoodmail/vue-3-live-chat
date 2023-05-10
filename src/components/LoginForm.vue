@@ -37,13 +37,14 @@ const onSubmit = handleSubmit(async (values) => {
 <template>
   <v-form @submit.prevent="onSubmit" class="w-100">
     <v-container>
-      <CustomField label="Email" name="email" type="email" mode="eager" />
+      <CustomField label="Email" name="email" type="email" mode="eager" autocomplete="username" />
       <CustomField
         :append-icon="!show ? 'mdi-eye' : 'mdi-eye-off'"
         label="Пароль"
         name="password"
         :type="!show ? 'text' : 'password'"
         mode="eager"
+        autocomplete="current-password"
         @click:append="show = !show"
       />
       <span class="text-caption text-red">{{ error }}</span>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onUpdated } from 'vue'
+import { computed, ref, onUpdated, watchEffect } from 'vue'
 import { formatDistanceToNow } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import getCollection from '@/composables/getCollection'

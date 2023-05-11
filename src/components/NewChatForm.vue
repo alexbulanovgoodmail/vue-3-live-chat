@@ -50,6 +50,8 @@ async function handleSubmit(params) {
 
 <style lang="scss">
 .new-chat-form {
+  padding: 0 16px;
+
   textarea::placeholder {
     font-size: 12px;
 

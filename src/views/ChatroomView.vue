@@ -18,17 +18,18 @@ watch(user, () => {
 
 <template>
   <Navbar />
-  <v-container class="panel pt-16">
+  <v-container sm class="panel pt-16">
     <ChatWindow />
     <NewChatForm />
   </v-container>
 </template>
 
 <style lang="scss">
-.panel {
+.panel.v-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  max-width: 720px;
 }
 </style>
